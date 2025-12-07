@@ -3,11 +3,10 @@ pipeline {
     stages{
         stage('Check Python') { 
             steps { 
-                // Verify that Jenkins can see Python 
-                   withPythonEnv('Python3') { 
-                    bat '%PYTHON% --version'  
-                   } 
-                   }
+                withPythonEnv('Python3') {  
+                    bat '%PYTHON% --version' 
+                } 
+            }
         stage('Clone Repository') {
             steps {
                 checkout([
