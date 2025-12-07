@@ -3,7 +3,14 @@ pipeline {
     stages{
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/NaveenBonthu/Python_Helloworld1.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/NaveenBonthu/Python_Helloworld1.git',
+                        credentialsId: '520'
+                    ]]
+                ])
             }
         }
         stage ("Install Dependencies"){
