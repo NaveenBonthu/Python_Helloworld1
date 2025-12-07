@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+             python 'Python3'
+             }
     stages{
         stage('Clone Repository') {
             steps {
@@ -15,19 +18,19 @@ pipeline {
         }
         stage ("Install Dependencies"){
             steps {
-                bat 'pip install -r requirements.txt'
+                bat '"%PYTHON%" -m pip install -r requirements.txt'
 
             }
         }
         stage('Run Test') {
             steps {
-                bat 'pytest || true'
+                bat '"%PYTHON%" -m pytest || true'
             }
         }
         stage('Deploy') {
             steps{
                 echo 'Starting Flask application..'
-                bat 'nohup python app.py &'
+                bat 'start /B "%PYTHON%" app.py'
             }
         }
     }
