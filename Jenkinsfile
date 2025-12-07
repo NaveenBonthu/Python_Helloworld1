@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools { // This name must match the Python installation name in Jenkins Global Tools
+       python "Python3" 
+       }
     stages{
         stage('Clone Repository') {
             steps {
