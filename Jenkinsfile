@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        jenkins.plugins.shiningpanda.tools.PythonInstallation 'Python3'
-        }
     stages{
         stage('Clone Repository') {
             steps {
