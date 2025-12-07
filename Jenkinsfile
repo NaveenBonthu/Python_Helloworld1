@@ -15,19 +15,19 @@ pipeline {
         }
         stage ("Install Dependencies"){
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
 
             }
         }
         stage('Run Test') {
             steps {
-                sh 'pytest || true'
+                bat 'pytest || true'
             }
         }
         stage('Deploy') {
             steps{
                 echo 'Starting Flask application..'
-                sh 'nohup pyton app.py &'
+                bat 'nohup python app.py &'
             }
         }
     }
