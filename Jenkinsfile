@@ -16,6 +16,7 @@ pipeline {
         stage ("Install Dependencies"){
             steps {
                 withPythonEnv('Python3') {
+                    bat '%PYTHON% -m pip install --upgrade pip'
                     bat '"%PYTHON%" -m pip install -r requirements.txt'
                 }
 
