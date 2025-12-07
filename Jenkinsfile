@@ -7,6 +7,7 @@ pipeline {
                     bat '%PYTHON% --version' 
                 } 
             }
+        }
         stage('Clone Repository') {
             steps {
                 checkout([
@@ -43,4 +44,4 @@ pipeline {
             }
         }
     }
-} 
+}
