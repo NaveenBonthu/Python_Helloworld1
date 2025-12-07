@@ -18,19 +18,24 @@ pipeline {
         }
         stage ("Install Dependencies"){
             steps {
-                bat '"%PYTHON%" -m pip install -r requirements.txt'
+                withPythonEnv('Python3') {
+                    bat '"%PYTHON%" -m pip install -r requirements.txt'
+                }
 
             }
         }
         stage('Run Test') {
             steps {
-                bat '"%PYTHON%" -m pytest || true'
+                withPythonEnv('Python3') {
+                    bat '"%PYTHON%" -m pytest || true'
+                    }
             }
         }
         stage('Deploy') {
             steps{
-                echo 'Starting Flask application..'
-                bat 'start /B "%PYTHON%" app.py'
+                withPythonEnv('Python3') {
+                    echo 'Starting Flask application..'
+                    bat 'start /B "%PYTHON%" app.py'}
             }
         }
     }
